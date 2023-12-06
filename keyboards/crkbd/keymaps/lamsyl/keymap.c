@@ -12,6 +12,37 @@ enum custom_keycodes {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
+    // Cmd [+ Shift] + Esc -> Cmd [+ Shift] + Tab
+    // Ctrl [+ Shift] + Esc -> Ctrl [+ Shift] + Tab
+    // Use ` (KC_GRV) to escape
+    case KC_ESC:
+        if (
+            get_mods() ==   MOD_BIT(KC_LCMD)                      ||
+            get_mods() == ( MOD_BIT(KC_LCMD) | MOD_BIT(KC_LSFT) ) ||
+            get_mods() ==   MOD_BIT(KC_LCTL)                      ||
+            get_mods() == ( MOD_BIT(KC_LCTL) | MOD_BIT(KC_LSFT) )
+        ) {
+            if (record->event.pressed) {
+                register_code(KC_TAB);
+            } else {
+                unregister_code(KC_TAB);
+            }
+            return false;
+        }
+        return true;
+
+    case KC_GRV:
+        if (
+            get_mods() == MOD_BIT(KC_LCMD) ||
+            get_mods() == MOD_BIT(KC_LCTL)
+        ) {
+            if (record->event.pressed) {
+                SEND_STRING(SS_TAP(X_ESC));
+            }
+            return false;
+        }
+        return true;
+
     case CAP3:
         if (record->event.pressed) {
             SEND_STRING(SS_LCMD(SS_LSFT("3")));
@@ -67,11 +98,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [3] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       KC_TAB, KC_EXLM,   KC_AT, KC_HASH, KC_DLR,  KC_PERC,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_HOME,
+        TO(0), KC_EXLM,   KC_AT, KC_HASH, KC_DLR,  KC_PERC,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_HOME,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LCTL, KC_CIRC, KC_AMPR, KC_ASTR,    CAP3,    CAP4,                      XXXXXXX, KC_PGDN, KC_PGUP, XXXXXXX,   KC_UP,  KC_END,
+      _______, KC_CIRC, KC_AMPR, KC_ASTR,    CAP3,    CAP4,                      XXXXXXX, KC_PGDN, KC_PGUP, XXXXXXX,   KC_UP,  KC_END,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LCMD, KC_MINS, KC_PLUS, KC_UNDS,  KC_EQL, KC_RSFT,                      XXXXXXX, XXXXXXX, XXXXXXX, KC_LEFT, KC_DOWN, KC_RGHT,
+      _______, KC_MINS, KC_PLUS, KC_UNDS,  KC_EQL, KC_RSFT,                      XXXXXXX, XXXXXXX, XXXXXXX, KC_LEFT, KC_DOWN, KC_RGHT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           XXXXXXX, XXXXXXX,   TO(1),     KC_ESC, _______, KC_RCTL
                                       //`--------------------------'  `--------------------------'
