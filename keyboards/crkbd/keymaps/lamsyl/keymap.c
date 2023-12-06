@@ -5,6 +5,28 @@
 
 #define OSM_CAG OSM(MOD_LCTL|MOD_LALT|MOD_LGUI)
 
+enum custom_keycodes {
+    CAP3 = SAFE_RANGE,
+    CAP4,
+};
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+    case CAP3:
+        if (record->event.pressed) {
+            SEND_STRING(SS_LCMD(SS_LSFT("3")));
+        }
+        return false;
+
+    case CAP4:
+        if (record->event.pressed) {
+            SEND_STRING(SS_LCMD(SS_LSFT("4")));
+        }
+        return false;
+    }
+    return true;
+};
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
@@ -47,7 +69,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
        KC_TAB, KC_EXLM,   KC_AT, KC_HASH, KC_DLR,  KC_PERC,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_HOME,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LCTL, KC_CIRC, KC_AMPR, KC_ASTR, XXXXXXX, XXXXXXX,                      XXXXXXX, KC_PGDN, KC_PGUP, XXXXXXX,   KC_UP,  KC_END,
+      KC_LCTL, KC_CIRC, KC_AMPR, KC_ASTR,    CAP3,    CAP4,                      XXXXXXX, KC_PGDN, KC_PGUP, XXXXXXX,   KC_UP,  KC_END,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LCMD, KC_MINS, KC_PLUS, KC_UNDS,  KC_EQL, KC_RSFT,                      XXXXXXX, XXXXXXX, XXXXXXX, KC_LEFT, KC_DOWN, KC_RGHT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
