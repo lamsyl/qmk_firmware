@@ -14,13 +14,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
     // Cmd [+ Shift] + Esc -> Cmd [+ Shift] + Tab
     // Ctrl [+ Shift] + Esc -> Ctrl [+ Shift] + Tab
+    // Cmd + Ctrl + Esc -> Cmd + Ctrl + Tab (Switch windows of same app, default is cmd+`)
     // Use ` (KC_GRV) to escape
     case KC_ESC:
         if (
             get_mods() ==   MOD_BIT(KC_LCMD)                      ||
             get_mods() == ( MOD_BIT(KC_LCMD) | MOD_BIT(KC_LSFT) ) ||
             get_mods() ==   MOD_BIT(KC_LCTL)                      ||
-            get_mods() == ( MOD_BIT(KC_LCTL) | MOD_BIT(KC_LSFT) )
+            get_mods() == ( MOD_BIT(KC_LCTL) | MOD_BIT(KC_LSFT) ) ||
+            get_mods() == ( MOD_BIT(KC_LCMD) | MOD_BIT(KC_LCTL) )
         ) {
             if (record->event.pressed) {
                 register_code(KC_TAB);
