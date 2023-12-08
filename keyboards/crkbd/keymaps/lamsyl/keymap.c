@@ -17,8 +17,12 @@ enum custom_layers {
 #define OSM_CAG OSM(MOD_LCTL|MOD_LALT|MOD_LGUI)
 
 enum custom_keycodes {
-    CAP3 = SAFE_RANGE,
-    CAP4,
+    CAP3 = SAFE_RANGE,  // Screenshot (Cmd+Shift+3), hold ctrl to copy to clipboard
+    CAP4,               // Screenshot (Cmd+Shift+4), hold ctrl to copy to clipboard
+    MSCTL,              // Mission Control (Ctrl+Up)
+    APPEXP,             // App Expose (Ctrl+Down)
+    SWPLEFT,            // Swipe left (Ctrl+Left)
+    SWPRGHT,            // Swipe right (Ctrl+Right)
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -70,7 +74,32 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             SEND_STRING(SS_LCMD(SS_LSFT("4")));
         }
         return false;
+
+    case MSCTL:
+        if (record->event.pressed) {
+            SEND_STRING(SS_LCTL(SS_TAP(X_UP)));
+        }
+        return false;
+
+    case APPEXP:
+        if (record->event.pressed) {
+            SEND_STRING(SS_LCTL(SS_TAP(X_DOWN)));
+        }
+        return false;
+
+    case SWPLEFT:
+        if (record->event.pressed) {
+            SEND_STRING(SS_LCTL(SS_TAP(X_LEFT)));
+        }
+        return false;
+
+    case SWPRGHT:
+        if (record->event.pressed) {
+            SEND_STRING(SS_LCTL(SS_TAP(X_RGHT)));
+        }
+        return false;
     }
+
     return true;
 };
 
@@ -120,11 +149,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
         TO(0), KC_EXLM,   KC_AT, KC_HASH, KC_DLR,  KC_PERC,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  KC_ESC,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_CAPS, KC_CIRC, KC_AMPR, KC_ASTR,    CAP3,    CAP4,                      XXXXXXX, KC_PGDN, KC_PGUP, XXXXXXX,   KC_UP, XXXXXXX,
+      KC_CAPS, KC_CIRC, KC_AMPR, KC_ASTR,    CAP3,    CAP4,                      XXXXXXX, KC_PGDN, KC_PGUP, XXXXXXX,   MSCTL, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-       KC_ENT, KC_MINS, KC_PLUS, KC_UNDS,  KC_EQL, KC_RSFT,                      XXXXXXX, XXXXXXX, XXXXXXX, KC_LEFT, KC_DOWN, KC_RGHT,
+       KC_ENT, KC_MINS, KC_PLUS, KC_UNDS,  KC_EQL, KC_RSFT,                      XXXXXXX, XXXXXXX, XXXXXXX, SWPLEFT,  APPEXP, SWPRGHT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          XXXXXXX,  KC_SPC,   TO(1),    XXXXXXX, XXXXXXX,   OSL(3)
+                                          KC_LCTL,  KC_SPC,   TO(1),    XXXXXXX, XXXXXXX,   OSL(3)
                                       //`--------------------------'  `--------------------------'
   ),
 };
