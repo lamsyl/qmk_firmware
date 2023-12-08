@@ -3,6 +3,10 @@
 
 #include QMK_KEYBOARD_H
 
+#ifdef OLED_ENABLE
+    #include "oled.c"
+#endif
+
 #define OSM_CAG OSM(MOD_LCTL|MOD_LALT|MOD_LGUI)
 
 enum custom_keycodes {
