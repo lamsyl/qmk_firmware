@@ -5,7 +5,27 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
     return rotation;
 }
 
+static void write_empty_line(void) {
+    static const char PROGMEM empty_line[] = {
+        0x20, 0x20, 0x20, 0x20, 0x20, 0
+    };
+    oled_write_P(empty_line, false);
+}
+
 static void render_status(void) {
+    static const char PROGMEM binary_00[] = {
+        0x20, 0x20, 0x30, 0x30, 0x20, 0
+    };
+    static const char PROGMEM binary_01[] = {
+        0x20, 0x20, 0x30, 0x31, 0x20, 0
+    };
+    static const char PROGMEM binary_10[] = {
+        0x20, 0x20, 0x31, 0x30, 0x20, 0
+    };
+    static const char PROGMEM binary_11[] = {
+        0x20, 0x20, 0x31, 0x31, 0x20, 0
+    };
+
     static const char PROGMEM qwerty_layer_logo[] = {
         0x20, 0x20, 0x9b, 0x9c, 0x20, 0
     };
@@ -18,21 +38,34 @@ static void render_status(void) {
     static const char PROGMEM symbol_layer_logo[] = {
         0x20, 0x9a, 0x9b, 0x9c, 0x03, 0
     };
+
     oled_clear();
     switch (get_highest_layer(layer_state)) {
     case _QWERTY:
+        write_empty_line();
+        oled_write_P(binary_00, false);
+        write_empty_line();
         oled_write_P(qwerty_layer_logo, false);
         break;
 
     case _CODE:
+        write_empty_line();
+        oled_write_P(binary_01, false);
+        write_empty_line();
         oled_write_P(code_layer_logo, false);
         break;
 
     case _NUMPAD:
+        write_empty_line();
+        oled_write_P(binary_10, false);
+        write_empty_line();
         oled_write_P(numpad_layer_logo, false);
         break;
 
     case _SYMBOL:
+        write_empty_line();
+        oled_write_P(binary_11, false);
+        write_empty_line();
         oled_write_P(symbol_layer_logo, false);
         break;
     }
