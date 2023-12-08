@@ -98,7 +98,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       _______,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,                      KC_PIPE, KC_LPRN, KC_RPRN, KC_COLN, KC_SCLN,  KC_DEL,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, KC_MINS, KC_PLUS, KC_UNDS,  KC_EQL, KC_MUTE,                      KC_COMM, KC_LBRC, KC_RBRC,  KC_DOT, KC_QUES, XXXXXXX,
+      _______, KC_MINS, KC_PLUS, KC_UNDS,  KC_EQL, XXXXXXX,                      KC_COMM, KC_LBRC, KC_RBRC,  KC_DOT, KC_QUES, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           _______, _______, KC_MUTE,    _______, _______,    TO(2)
                                       //`--------------------------'  `--------------------------'
@@ -106,13 +106,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_NUMPAD] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-        TO(0), XXXXXXX, KC_PSLS, KC_PAST, KC_PMNS, KC_VOLU,                        KC_P7,   KC_P8,   KC_P9, XXXXXXX, XXXXXXX, KC_PEQL,
+        TO(0), XXXXXXX, XXXXXXX, KC_VOLU, KC_PAST, KC_PSLS,                        KC_P7,   KC_P8,   KC_P9, XXXXXXX, XXXXXXX, KC_PEQL,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, XXXXXXX, XXXXXXX, XXXXXXX, KC_PPLS, KC_VOLD,                        KC_P4,   KC_P5,   KC_P6, XXXXXXX, XXXXXXX, KC_BSPC,
+      _______, XXXXXXX, XXXXXXX, KC_VOLD, KC_PPLS, KC_PMNS,                        KC_P4,   KC_P5,   KC_P6, XXXXXXX, XXXXXXX, KC_BSPC,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_MUTE,                        KC_P1,   KC_P2,   KC_P3, KC_COMM, KC_QUES, XXXXXXX,
+      _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                        KC_P1,   KC_P2,   KC_P3, KC_COMM, KC_QUES, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          _______,  KC_SPC,  KC_ENT,      KC_P0, KC_PDOT, XXXXXXX
+                                          KC_MUTE,  KC_SPC,  KC_ENT,      KC_P0, KC_PDOT, XXXXXXX
                                       //`--------------------------'  `--------------------------'
   ),
 
