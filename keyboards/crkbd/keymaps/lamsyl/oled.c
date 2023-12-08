@@ -6,19 +6,34 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
 }
 
 static void render_status(void) {
-    oled_write_ln_P(PSTR("\n\n\n\n\n\n\n"), false);
+    static const char PROGMEM qwerty_layer_logo[] = {
+        0x20, 0x20, 0x9b, 0x9c, 0x20, 0
+    };
+    static const char PROGMEM code_layer_logo[] = {
+        0x20, 0x9a, 0x9b, 0x9c, 0x20, 0
+    };
+    static const char PROGMEM numpad_layer_logo[] = {
+        0x20, 0x20, 0x9b, 0x9c, 0x03, 0
+    };
+    static const char PROGMEM symbol_layer_logo[] = {
+        0x20, 0x9a, 0x9b, 0x9c, 0x03, 0
+    };
+    oled_clear();
     switch (get_highest_layer(layer_state)) {
-    case 0:
-        oled_write_ln_P(PSTR(" [0] "), false);
+    case _QWERTY:
+        oled_write_P(qwerty_layer_logo, false);
         break;
-    case 1:
-        oled_write_ln_P(PSTR(" [1] "), false);
+
+    case _CODE:
+        oled_write_P(code_layer_logo, false);
         break;
-    case 2:
-        oled_write_ln_P(PSTR(" [2] "), false);
+
+    case _NUMPAD:
+        oled_write_P(numpad_layer_logo, false);
         break;
-    case 3:
-        oled_write_ln_P(PSTR(" [3] "), false);
+
+    case _SYMBOL:
+        oled_write_P(symbol_layer_logo, false);
         break;
     }
 }
