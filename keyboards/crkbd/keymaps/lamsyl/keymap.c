@@ -14,7 +14,13 @@ enum custom_layers {
     #include "oled.c"
 #endif
 
+// combine with layer 1 key (same layer):
+// OSL(1) -> OSM_CAG -> KC_RGHT = Ctrl+Opt+Cmd+Right
+//
+// combine with layer 0 key (different layer):
+// OSL(1) -> OSM_CAG -> TO(0) -> KC_Q = Ctrl+Opt+Cmd+Q
 #define OSM_CAG OSM(MOD_LCTL|MOD_LALT|MOD_LGUI)
+
 #define LT3GRV  LT(3, KC_GRV)
 
 enum custom_keycodes {
@@ -159,7 +165,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_CAPS, KC_CIRC, KC_AMPR, KC_ASTR,    CAP3,    CAP4,                      XXXXXXX, KC_PGDN, KC_PGUP, XXXXXXX,   MSCTL, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-       KC_ENT, KC_MINS, KC_PLUS, KC_UNDS,  KC_EQL, KC_RSFT,                      XXXXXXX, XXXXXXX, XXXXXXX, SWPLEFT,  APPEXP, SWPRGHT,
+       KC_ENT, KC_MINS, KC_PLUS, KC_UNDS,  KC_EQL, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, SWPLEFT,  APPEXP, SWPRGHT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           KC_LCTL,  KC_SPC,   TO(1),    XXXXXXX, XXXXXXX,   OSL(3)
                                       //`--------------------------'  `--------------------------'
