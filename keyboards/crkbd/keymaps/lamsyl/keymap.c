@@ -18,7 +18,8 @@ enum custom_layers {
 #define LT3GRV  LT(3, KC_GRV)
 
 enum custom_keycodes {
-    CAP3 = SAFE_RANGE,  // Screenshot (Cmd+Shift+3), hold ctrl to copy to clipboard
+    FESC = SAFE_RANGE,  // Force escape by sending literal `ESC` without special handling
+    CAP3,               // Screenshot (Cmd+Shift+3), hold ctrl to copy to clipboard
     CAP4,               // Screenshot (Cmd+Shift+4), hold ctrl to copy to clipboard
     MSCTL,              // Mission Control (Ctrl+Up)
     APPEXP,             // App Expose (Ctrl+Down)
@@ -28,10 +29,16 @@ enum custom_keycodes {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
+    case FESC:
+        if (record->event.pressed) {
+            SEND_STRING(SS_TAP(X_ESC));
+        }
+        return false;
+
     // Cmd [+ Shift] + Esc -> Cmd [+ Shift] + Tab
     // Ctrl [+ Shift] + Esc -> Ctrl [+ Shift] + Tab
     // Cmd + Ctrl + Esc -> Cmd + Ctrl + Tab (Switch windows of same app, default is cmd+`)
-    // Use ` (KC_GRV) to escape
+    // Use FESC to escape
     case KC_ESC:
         if (
             get_mods() ==   MOD_BIT(KC_LCMD)                      ||
@@ -124,11 +131,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_CODE] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-        TO(0),    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                      KC_BSLS,   KC_LT,   KC_GT, KC_SLSH, KC_QUOT, OSM_CAG,
+        TO(0),    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                      KC_BSLS,   KC_LT,   KC_GT, KC_SLSH, KC_QUOT,    FESC,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       _______,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,                      KC_PIPE, KC_LPRN, KC_RPRN, KC_COLN, KC_SCLN,  KC_DEL,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, KC_MINS, KC_PLUS, KC_UNDS,  KC_EQL, XXXXXXX,                      KC_COMM, KC_LBRC, KC_RBRC,  KC_DOT, KC_QUES, XXXXXXX,
+      _______, KC_MINS, KC_PLUS, KC_UNDS,  KC_EQL, XXXXXXX,                      KC_COMM, KC_LBRC, KC_RBRC,  KC_DOT, KC_QUES, OSM_CAG,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           _______, _______, _______,    KC_RGHT, KC_MUTE,    TO(2)
                                       //`--------------------------'  `--------------------------'
