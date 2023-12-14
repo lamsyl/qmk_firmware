@@ -31,6 +31,8 @@ enum custom_keycodes {
     APPEXP,             // App Expose (Ctrl+Down)
     SWPLEFT,            // Swipe left (Ctrl+Left)
     SWPRGHT,            // Swipe right (Ctrl+Right)
+    RASGN,              // Insert R assignment operator <- in RStudio (Opt+-)
+    RPIPE,              // Insert R pipe operator %>% in RStudio (Cmd+Shift+M)
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -112,6 +114,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             SEND_STRING(SS_LCTL(SS_TAP(X_RGHT)));
         }
         return false;
+
+    case RASGN:
+        if (record->event.pressed) {
+            SEND_STRING(SS_LOPT("-"));
+        }
+        return false;
+
+    case RPIPE:
+        if (record->event.pressed) {
+            SEND_STRING(SS_LCMD(SS_LSFT("m")));
+        }
+        return false;
     }
 
     return true;
@@ -165,7 +179,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_CAPS, KC_CIRC, KC_AMPR, KC_ASTR,    CAP3,    CAP4,                      XXXXXXX, KC_PGDN, KC_PGUP, XXXXXXX,   MSCTL, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-       KC_ENT, KC_MINS, KC_PLUS, KC_UNDS,  KC_EQL, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, SWPLEFT,  APPEXP, SWPRGHT,
+       KC_ENT, KC_MINS, KC_PLUS, KC_UNDS,  KC_EQL, XXXXXXX,                        RASGN,   RPIPE, XXXXXXX, SWPLEFT,  APPEXP, SWPRGHT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           KC_LCTL,  KC_SPC,   TO(1),    XXXXXXX, XXXXXXX,   OSL(3)
                                       //`--------------------------'  `--------------------------'
