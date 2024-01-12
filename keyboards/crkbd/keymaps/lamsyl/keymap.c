@@ -31,6 +31,9 @@ enum custom_keycodes {
     APPEXP,             // App Expose (Ctrl+Down)
     SWPLEFT,            // Swipe left (Ctrl+Left)
     SWPRGHT,            // Swipe right (Ctrl+Right)
+    LARGER,             // Large (Cmd+=)
+    SMALLER,            // Small (Cmd+-)
+    RESIZE,             // Resize (Cmd+0)
     RASGN,              // Insert R assignment operator <- in RStudio (Opt+-)
     RPIPE,              // Insert R pipe operator %>% in RStudio (Cmd+Shift+M)
 };
@@ -115,6 +118,24 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
         return false;
 
+    case LARGER:
+        if (record->event.pressed) {
+            SEND_STRING(SS_LCMD("="));
+        }
+        return false;
+
+    case SMALLER:
+        if (record->event.pressed) {
+            SEND_STRING(SS_LCMD("-"));
+        }
+        return false;
+
+    case RESIZE:
+        if (record->event.pressed) {
+            SEND_STRING(SS_LCMD("0"));
+        }
+        return false;
+
     case RASGN:
         if (record->event.pressed) {
             SEND_STRING(SS_LOPT("-"));
@@ -175,7 +196,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_SYMBOL] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-        TO(0), KC_EXLM,   KC_AT, KC_HASH, KC_DLR,  KC_PERC,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  KC_ESC,
+        TO(0), KC_EXLM,   KC_AT, KC_HASH, KC_DLR,  KC_PERC,                      XXXXXXX,  RESIZE, SMALLER,  LARGER, XXXXXXX,  KC_ESC,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_CAPS, KC_CIRC, KC_AMPR, KC_ASTR,    CAP3,    CAP4,                      XXXXXXX, KC_PGDN, KC_PGUP, XXXXXXX,   MSCTL, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
