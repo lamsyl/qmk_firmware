@@ -34,8 +34,6 @@ enum custom_keycodes {
     LARGER,             // Large (Cmd+=)
     SMALLER,            // Small (Cmd+-)
     RESIZE,             // Resize (Cmd+0)
-    RASGN,              // Insert R assignment operator <- in RStudio (Opt+-)
-    RPIPE,              // Insert R pipe operator %>% in RStudio (Cmd+Shift+M)
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -136,19 +134,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
         return false;
 
-    case RASGN:
-        if (record->event.pressed) {
-            SEND_STRING(SS_LOPT("-"));
-        }
-        return false;
-
-    case RPIPE:
-        if (record->event.pressed) {
-            SEND_STRING(SS_LCMD(SS_LSFT("m")));
-        }
-        return false;
-    }
-
     return true;
 };
 
@@ -156,7 +141,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 // _QWERTY => OSL(1)  -> TO(0)
 // _CODE   => TO(2)   -> TO(0)
 // _NUMPAD => XXXXXXX -> TO(0)
-// _SYMBOL => OSL(3)  -> TO(0)
+// _SYMBOL => KC_ROPT -> TO(0)
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWERTY] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
@@ -200,9 +185,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_CAPS, KC_CIRC, KC_AMPR, KC_ASTR,    CAP3,    CAP4,                      XXXXXXX, KC_PGDN, KC_PGUP, SMALLER,   MSCTL, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-       KC_ENT, KC_MINS, KC_PLUS, KC_UNDS,  KC_EQL, XXXXXXX,                        RASGN,   RPIPE, XXXXXXX, SWPLEFT,  APPEXP, SWPRGHT,
+       KC_ENT, KC_MINS, KC_PLUS, KC_UNDS,  KC_EQL, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, SWPLEFT,  APPEXP, SWPRGHT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_LCTL,  KC_SPC,   TO(1),    XXXXXXX, XXXXXXX,   OSL(3)
+                                          KC_LCTL,  KC_SPC,   TO(1),    XXXXXXX, KC_RCMD,  KC_ROPT
                                       //`--------------------------'  `--------------------------'
   ),
 };
