@@ -170,9 +170,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_NUMPAD] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-        TO(0), XXXXXXX, XXXXXXX, KC_VOLU, KC_PAST, KC_PSLS,                        KC_P7,   KC_P8,   KC_P9, KC_HOME, KC_PGUP, KC_PEQL,
+        TO(0),  LARGER,  RESIZE, KC_VOLU, KC_PAST, KC_PSLS,                        KC_P7,   KC_P8,   KC_P9, XXXXXXX, XXXXXXX, KC_PEQL,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, XXXXXXX,   KC_UP, KC_VOLD, KC_PPLS, KC_PMNS,                        KC_P4,   KC_P5,   KC_P6,  KC_END, KC_PGDN, KC_BSPC,
+      _______, SMALLER,   KC_UP, KC_VOLD, KC_PPLS, KC_PMNS,                        KC_P4,   KC_P5,   KC_P6, XXXXXXX, XXXXXXX, KC_BSPC,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       _______, KC_LEFT, KC_DOWN, KC_RGHT, KC_COLN, XXXXXXX,                        KC_P1,   KC_P2,   KC_P3, KC_COMM, KC_QUES, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
@@ -182,9 +182,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_SYMBOL] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-        TO(0), KC_EXLM,   KC_AT, KC_HASH, KC_DLR,  KC_PERC,                      XXXXXXX,   KC_LT,   KC_GT,  LARGER,  RESIZE,  KC_ESC,
+        TO(0), KC_EXLM,   KC_AT, KC_HASH, KC_DLR,  KC_PERC,                      XXXXXXX,   KC_LT,   KC_GT, XXXXXXX, XXXXXXX,  KC_ESC,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_CAPS, KC_CIRC, KC_AMPR, KC_ASTR,    CAP3,    CAP4,                      XXXXXXX, KC_PGDN, KC_PGUP, SMALLER,   MSCTL, XXXXXXX,
+      KC_CAPS, KC_CIRC, KC_AMPR, KC_ASTR,    CAP3,    CAP4,                      KC_HOME, KC_PGDN, KC_PGUP,  KC_END,   MSCTL, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
        KC_ENT, KC_MINS, KC_PLUS, KC_UNDS,  KC_EQL, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, SWPLEFT,  APPEXP, SWPRGHT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
