@@ -158,11 +158,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_CODE] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-        TO(0),    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                      XXXXXXX,   KC_LT,   KC_GT, KC_SLSH, KC_BSLS,    FESC,
+        TO(0),    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                      XXXXXXX, KC_LCBR, KC_RCBR, KC_SLSH, KC_BSLS,    FESC,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       _______,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,                      KC_PIPE, KC_LPRN, KC_RPRN, KC_COLN, KC_SCLN,  KC_DEL,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, KC_QUOT, KC_DQUO, KC_LCBR, KC_RCBR, XXXXXXX,                      KC_COMM, KC_LBRC, KC_RBRC,  KC_DOT, KC_QUES, OSM_CAG,
+      _______, KC_QUOT, KC_DQUO,   KC_LT,   KC_GT, XXXXXXX,                      KC_COMM, KC_LBRC, KC_RBRC,  KC_DOT, KC_QUES, OSM_CAG,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           _______, _______, _______,    KC_RGHT, KC_MUTE,    TO(2)
                                       //`--------------------------'  `--------------------------'
