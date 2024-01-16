@@ -172,9 +172,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
         TO(0),  LARGER,  RESIZE, KC_VOLU, KC_PAST, KC_PSLS,                        KC_P7,   KC_P8,   KC_P9, XXXXXXX, XXXXXXX, KC_PEQL,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, SMALLER,   KC_UP, KC_VOLD, KC_PPLS, KC_PMNS,                        KC_P4,   KC_P5,   KC_P6, XXXXXXX, XXXXXXX, KC_BSPC,
+       KC_TAB, SMALLER,   KC_UP, KC_VOLD, KC_PPLS, KC_PMNS,                        KC_P4,   KC_P5,   KC_P6, XXXXXXX, XXXXXXX, KC_BSPC,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, KC_LEFT, KC_DOWN, KC_RGHT, KC_COLN, XXXXXXX,                        KC_P1,   KC_P2,   KC_P3, KC_COMM, KC_QUES, XXXXXXX,
+      KC_LSFT, KC_LEFT, KC_DOWN, KC_RGHT, KC_COLN, XXXXXXX,                        KC_P1,   KC_P2,   KC_P3, KC_COMM, KC_QUES, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           KC_MUTE,  KC_SPC,  KC_ENT,      KC_P0, KC_PDOT, XXXXXXX
                                       //`--------------------------'  `--------------------------'
