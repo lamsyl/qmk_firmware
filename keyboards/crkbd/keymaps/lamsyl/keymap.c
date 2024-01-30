@@ -138,6 +138,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return true;
 };
 
+void leader_end_user(void) {
+    if (leader_sequence_one_key(KC_V)) {
+        // Leader, v => Move instead of paste
+        SEND_STRING(SS_LCMD(SS_LOPT("v")));
+    }
+}
+
 // Go to _QWERTY (base layer) via the same combo:
 // _QWERTY => OSL(1)  -> TO(0)
 // _CODE   => TO(2)   -> TO(0)
@@ -188,7 +195,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
        KC_ENT, KC_MINS, KC_PLUS, KC_UNDS,  KC_EQL,   KC_GT,                      XXXXXXX, XXXXXXX, XXXXXXX, SWPLEFT,  APPEXP, SWPRGHT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_LCTL,  KC_SPC,   TO(1),    XXXXXXX, KC_RCMD,  KC_ROPT
+                                          KC_LCTL,  KC_SPC, QK_LEAD,    QK_LEAD, KC_RCMD,  KC_ROPT
                                       //`--------------------------'  `--------------------------'
   ),
 };
