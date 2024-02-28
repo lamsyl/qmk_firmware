@@ -32,10 +32,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_BASE] = LAYOUT_ortho_4x4(
-    XXXXXXX,  NOQC,     RC,       XXXXXXX,
-    XXXXXXX,  XXXXXXX,  KC_R,     KC_BSPC,
+    NOQC,     XXXXXXX,  XXXXXXX,  RC,
     XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
-    MO(_FN1), KC_SPC,   KC_SPC,   KC_ENT
+    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
+    MO(_FN1), XXXXXXX,  XXXXXXX,  KC_ENT
   ),
 
   [_FN1] = LAYOUT_ortho_4x4(
