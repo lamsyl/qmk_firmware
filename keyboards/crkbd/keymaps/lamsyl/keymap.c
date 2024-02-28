@@ -142,6 +142,12 @@ void leader_end_user(void) {
     if (leader_sequence_one_key(KC_V)) {
         // Leader, v => Move instead of paste
         SEND_STRING(SS_LCMD(SS_LOPT("v")));
+    } else if (leader_sequence_one_key(KC_H)) {
+        // Leader, h => HOME
+        SEND_STRING(SS_TAP(X_HOME));
+    } else if (leader_sequence_one_key(KC_E)) {
+        // Leader, e => END
+        SEND_STRING(SS_TAP(X_END));
     }
 }
 
