@@ -201,7 +201,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
         KC_LT, KC_MINS, KC_PLUS, KC_UNDS,  KC_EQL,   KC_GT,                      XXXXXXX, KC_PGDN, KC_PGUP, SWPLEFT,  APPEXP, SWPRGHT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_LCTL,  KC_SPC, QK_LEAD,    XXXXXXX, KC_RCMD, KC_ROPT
+                                          KC_LCTL,  KC_SPC,   TO(1),    QK_LEAD, KC_RCMD, KC_ROPT
                                       //`--------------------------'  `--------------------------'
   ),
 };
