@@ -34,6 +34,7 @@ enum custom_keycodes {
     LARGER,             // Large (Cmd+=)
     SMALLER,            // Small (Cmd+-)
     RESIZE,             // Resize (Cmd+0)
+    RASGN,              // R assignment <-
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -133,6 +134,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             SEND_STRING(SS_LCMD("0"));
         }
         return false;
+
+    case RASGN:
+        if (record->event.pressed) {
+            SEND_STRING(SS_LOPT("-"));
+        }
+        return false;
+
     }
 
     return true;
@@ -199,7 +207,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_CAPS, KC_CIRC, KC_AMPR, KC_ASTR,    CAP3,    CAP4,                      KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT,   MSCTL,  RESIZE,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-        KC_LT, KC_MINS, KC_PLUS, KC_UNDS,  KC_EQL,   KC_GT,                      XXXXXXX, KC_PGDN, KC_PGUP, SWPLEFT,  APPEXP, SWPRGHT,
+        KC_LT, KC_MINS, KC_PLUS, KC_UNDS,  KC_EQL,   KC_GT,                        RASGN, KC_PGDN, KC_PGUP, SWPLEFT,  APPEXP, SWPRGHT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           KC_LCTL,  KC_SPC,   TO(1),    QK_LEAD, KC_RCMD, KC_ROPT
                                       //`--------------------------'  `--------------------------'
